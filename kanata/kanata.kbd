@@ -3,11 +3,12 @@
 )
 (defsrc
  f d s a
+ j k l ;
 )
 
 (defvar
   tap-time 200
-  hold-time 200
+  hold-time 300
 )
 (defalias
   f-mod (tap-hold $tap-time $hold-time f lctrl)

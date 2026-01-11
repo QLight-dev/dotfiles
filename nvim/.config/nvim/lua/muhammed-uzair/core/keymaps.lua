@@ -4,9 +4,6 @@ local opts = { noremap = true, silent = true }
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
---
-vim.keymap.set({ "v", "i" }, "<C-Space>", "<Esc>", opts)
-
 -- greatest remap ever : ThePrimeagen
 vim.keymap.set("x", "<leader>p", [["\"_dP]], opts)
 
