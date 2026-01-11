@@ -73,7 +73,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-interactive-cd)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-interactive-cd zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -111,6 +111,23 @@ echo 'eval "$(zoxide init zsh)"' >> ~/.zshrc
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export EDITOR="nvim"
+eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(zoxide init zsh)"
