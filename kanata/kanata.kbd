@@ -16,10 +16,10 @@
   s-mod (tap-hold $tap-time $hold-time s lalt)
   a-mod (tap-hold $tap-time $hold-time a lmet)
 
-  j-mod (tap-hold $tap-time $hold-time j lctrl)
-  k-mod (tap-hold $tap-time $hold-time k lsft)
-  l-mod (tap-hold $tap-time $hold-time l lalt)
-  ;-mod (tap-hold $tap-time $hold-time ; lmet)
+  j-mod (tap-hold $tap-time $hold-time j rctrl)
+  k-mod (tap-hold $tap-time $hold-time k rsft)
+  l-mod (tap-hold $tap-time $hold-time l ralt)
+  ;-mod (tap-hold $tap-time $hold-time ; rmet)
 )
 
 (deflayer base
