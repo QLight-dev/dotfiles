@@ -1,15 +1,19 @@
 (defcfg
   process-unmapped-keys yes
 )
+
 (defsrc
  f d s a
  j k l ;
+ h j k l 
+ space
 )
 
 (defvar
   tap-time 200
-  hold-time 300
+  hold-time 200
 )
+
 (defalias
   f-mod (tap-hold $tap-time $hold-time f lctrl)
   d-mod (tap-hold $tap-time $hold-time d lsft)
@@ -19,10 +23,18 @@
   j-mod (tap-hold $tap-time $hold-time j rctrl)
   k-mod (tap-hold $tap-time $hold-time k rsft)
   l-mod (tap-hold $tap-time $hold-time l ralt)
-  ;-mod (tap-hold $tap-time $hold-time ; rmet)
+  ;-mod (tap-hold $tap-time $hold-time ; rmet) ;; optional
+
+  spc-mod (tap-hold $tap-time $hold-time space nav)
+)
+
+(deflayer nav
+ h-left  j-down
+ k-up    l-right
 )
 
 (deflayer base
  @f-mod @d-mod @s-mod @a-mod
  @j-mod @k-mod @l-mod @;-mod
+ @spc-mod
 )
