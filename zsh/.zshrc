@@ -44,3 +44,6 @@ alias pip3="~/env/bin/pip3"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export EDITOR="nvim"
 eval "$(zoxide init zsh)"
+
+# PATH Variables.
+export PATH="$HOME/go/bin:$PATH"
