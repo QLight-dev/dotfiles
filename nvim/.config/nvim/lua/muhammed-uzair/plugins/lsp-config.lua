@@ -15,7 +15,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		lazy = false,
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
