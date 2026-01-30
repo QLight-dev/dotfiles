@@ -35,11 +35,6 @@ export LANG=en_US.UTF-8
 # Compilation flags
 export ARCHFLAGS="-arch $(uname -m)"
 
-alias python="~/env/bin/python"
-alias python3="~/env/bin/python3"
-alias pip="~/env/bin/pip"
-alias pip3="~/env/bin/pip3"
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export EDITOR="nvim"
