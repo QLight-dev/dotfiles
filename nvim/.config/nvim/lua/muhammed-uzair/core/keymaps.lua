@@ -5,7 +5,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- greatest remap ever : ThePrimeagen
-vim.keymap.set("x", "<leader>p", [["\"_dP]], opts)
+vim.keymap.set("v", "<leader>p", [["\"_dP]], opts)
 
 -- fix life
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], opts)
