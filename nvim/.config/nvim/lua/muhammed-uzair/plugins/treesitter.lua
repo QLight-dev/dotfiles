@@ -8,7 +8,6 @@ return {
       indent = { enable = true },
       ensure_installed = {
         "go",
-        "python",
         "lua",
       },
     },
