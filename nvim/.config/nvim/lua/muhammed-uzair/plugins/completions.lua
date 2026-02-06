@@ -31,11 +31,11 @@ return {
 					documentation = cmp.config.window.bordered(),
 				},
 				mapping = cmp.mapping.preset.insert({
-					["<C-b>"] = cmp.mapping.scroll_docs(-4),
-					["<C-f>"] = cmp.mapping.scroll_docs(4),
-					["<C-S-Space>"] = cmp.mapping.complete(),
-					["<C-e>"] = cmp.mapping.abort(),
-					["	"] = cmp.mapping.confirm({ select = true }),
+					["<C-j>"] = cmp.mapping.select_next_item(), -- Move down
+					["<C-k>"] = cmp.mapping.select_prev_item(), -- Move up
+					["<C-y>"] = cmp.mapping.confirm({ select = true }), -- Confirm selection
+					["<C-n>"] = cmp.mapping.abort(), -- Close completion menu
+					["<C-Space>"] = cmp.mapping.complete(), -- Trigger completion	
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
