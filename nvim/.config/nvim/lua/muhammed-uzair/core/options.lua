@@ -33,5 +33,5 @@ vim.opt.hlsearch = true
 
 vim.opt.mouse = "a"
 
--- best  option you can set
-vim.opt.guicursor = ""
+-- still deciding if i like it:
+-- vim.opt.guicursor = ""
