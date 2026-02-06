@@ -30,16 +30,16 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-interactive-cd zsh-
 
 source $ZSH/oh-my-zsh.sh
 
+# exports
+export EDITOR="nvim"
 export LANG=en_US.UTF-8
-
-# Compilation flags
 export ARCHFLAGS="-arch $(uname -m)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-export EDITOR="nvim"
 eval "$(zoxide init zsh)"
 
+# aliases
 alias nv="nvim"
 alias v="vim"
 
