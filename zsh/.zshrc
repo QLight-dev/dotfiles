@@ -10,8 +10,8 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # OMZ reminder
-zstyle ':omz:update' mode reminder
-zstyle ':omz:update' frequency 7
+# zstyle ':omz:update' mode reminder
+# zstyle ':omz:update' frequency 7
 
 DISABLE_MAGIC_FUNCTIONS="false"
 DISABLE_LS_COLORS="false"
@@ -45,3 +45,4 @@ alias v="vim"
 
 # PATH Variables.
 export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
