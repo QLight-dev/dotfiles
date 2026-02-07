@@ -8,7 +8,7 @@ This is my personal dotfiles repo.
 - `tmux/.tmux.conf` my Tmux configuration.
 - `ghostty/.config/ghostty` my Ghostty configuration.
 - `kanata/kanta.kbd` my home row mods using kanata.
-- `scripts/` my own scripts for automation.
+- `scripts/.local/bin` my own scripts for automation.
 
 ## Installation
 ```zsh 
