@@ -16,9 +16,3 @@ git clone https://github.com/QLight-dev/dotfiles.git
 cd dotfiles
 stow <package-name>
 ```
-
-> [!EXAMPLE]
-> To symlink Neovim:
-> ```zsh
-> stow nvim
-> ```
