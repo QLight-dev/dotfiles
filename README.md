@@ -6,9 +6,9 @@ This is my personal dotfiles repo.
 - `nvim/.config/nvim/` my Neovim configuration.
 - `zsh/` my zsh configuration.
 - `tmux/.tmux.conf` my Tmux configuration.
-- `ghostty/.config/ghostty` my Ghostty configuration.
+- `ghostty/.config/ghostty/` my Ghostty configuration.
 - `kanata/kanta.kbd` my home row mods using kanata.
-- `scripts/.local/bin` my own scripts for automation.
+- `scripts/.local/bin/` my own scripts for automation.
 
 ## Installation
 ```zsh 
