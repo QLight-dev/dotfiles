@@ -39,9 +39,15 @@ export ARCHFLAGS="-arch $(uname -m)"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 eval "$(zoxide init zsh)"
 
-# aliases
+# some helpful aliases
 alias nv="nvim"
 alias v="vim"
+# git aliases
+alias gitcm="git commit -m"
+alias gits="git status"
+alias gitl="git log"
+alias gitp="git push"
+alias gita="git add"
 
 # PATH Variables.
 export PATH="$HOME/go/bin:$PATH"
