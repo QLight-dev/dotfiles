@@ -8,6 +8,15 @@ This is my personal dotfiles repo. It has only what i need and nothing more.
 - That would make neovim load in like 3 seconds and the terminal load in like 5 seconds with all that.
 - the amount of lsps and treesitter parsers and debuggers i'd have to install probably double the size of my dotfiles and make lsp-config.lua, treesitter.lua, and debugger.lua have 500 lines each. Making adding a slight change take like 10 minutes.
 - I'd get like 1000 lines of config for neovim, so again, making tweaking something take some time.
+### Why don't you use vanilla vim, bash, and deal with having to lose your finger trying to use the control key?
+- Vanilla vim is not enough to code more than a `print("Hello, World!")`.
+- Bash is worser than zsh.
+- Without home row mods, i wouldn't be able to code for more than like 4 hourse.
+### Why don't you use VSCode?
+- Steals my data.
+- Uses mouse no matter what you try
+- not in terminal.
+- intellisense is slow.
 
 ## Structure
 - `nvim/.config/nvim/` my Neovim configuration.
