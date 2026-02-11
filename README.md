@@ -27,6 +27,8 @@ This is my personal dotfiles repo. It has only what i need and nothing more.
 - `scripts/.local/bin/` my own scripts for automation.
 
 ## Installation
+> [!NOTE]
+> Requires GNU Stow and git.
 ```zsh 
 git clone https://github.com/QLight-dev/dotfiles.git
 cd dotfiles
