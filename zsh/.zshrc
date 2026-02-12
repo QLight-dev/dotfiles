@@ -42,6 +42,9 @@ eval "$(zoxide init zsh)"
 # some helpful aliases
 alias nv="nvim"
 alias v="vim"
+alias ..="z .."
+alias ../..="z ../.."
+
 # git aliases
 alias gcm="git commit -m"
 alias gs="git status"
