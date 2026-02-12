@@ -43,11 +43,12 @@ eval "$(zoxide init zsh)"
 alias nv="nvim"
 alias v="vim"
 # git aliases
-alias gitcm="git commit -m"
-alias gits="git status"
-alias gitl="git log"
-alias gitp="git push"
-alias gita="git add"
+alias gcm="git commit -m"
+alias gs="git status"
+alias glog="git log"
+alias gp="git push"
+alias ga="git add"
+
 
 # PATH Variables.
 export PATH="$HOME/go/bin:$PATH"
