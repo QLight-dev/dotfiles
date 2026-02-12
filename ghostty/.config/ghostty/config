@@ -1,3 +1,2 @@
 command = /usr/bin/zsh -l
 theme = Catppuccin Mocha
-custom-shader = cursor_tail.glsl
