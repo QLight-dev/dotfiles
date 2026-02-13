@@ -45,14 +45,6 @@ alias v="vim"
 alias ..="z .."
 alias ../..="z ../.."
 
-# git aliases
-alias gcm="git commit -m"
-alias gs="git status"
-alias glog="git log"
-alias gp="git push"
-alias ga="git add"
-
-
 # PATH Variables.
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
