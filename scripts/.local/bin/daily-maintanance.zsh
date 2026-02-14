@@ -8,7 +8,7 @@ sudo pacman -Syyu --noconfirm
 # update nvim
 echo "update neovim... (manually)"
 cd ~/dotfiles
-nvim .
+nvim
 
 echo "commiting changes..."
 git add nvim/.config/nvim/lazy-lock.json
