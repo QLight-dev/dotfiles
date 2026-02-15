@@ -4,6 +4,10 @@ local opts = { noremap = true, silent = true }
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- for scrolling half pages
+vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
+vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
+
 -- greatest remap ever : ThePrimeagen
 vim.keymap.set("v", "<leader>p", [["\"_dP]], opts)
 
