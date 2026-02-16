@@ -11,3 +11,6 @@ $memory_usage\
 $cpu_load\
 $cmd_duration
 """
+
+[golang]
+symbol = " "
