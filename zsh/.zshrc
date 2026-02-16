@@ -42,7 +42,7 @@ export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
 # evals
 eval "$(zoxide init zsh)"
-eval "$(startship init zsh)"
+eval "$(starship init zsh)"
 
 # some helpful aliases
 alias nv="nvim"
