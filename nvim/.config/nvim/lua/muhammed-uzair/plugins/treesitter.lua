@@ -7,8 +7,13 @@ return {
       highlight = { enable = true },
       indent = { enable = true },
       ensure_installed = {
+        -- coding
         "go",
-        "lua",
+
+        -- config
+        "lua", -- nvim
+        "toml", -- starship
+        "zsh" -- shell and scripts
       },
     },
   },
