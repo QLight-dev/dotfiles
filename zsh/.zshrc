@@ -48,3 +48,8 @@ alias ../..="z ../.."
 # PATH Variables.
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+
+# Custom Functions
+mkcd() {
+  mkdir -p "$1" && cd "$1"
+}
