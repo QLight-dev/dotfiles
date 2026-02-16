@@ -1,0 +1,13 @@
+format = """
+$directory\
+$git_branch\
+$golang\
+$git_status
+$character
+"""
+
+right_format = """
+$memory_usage\
+$cpu_load\
+$cmd_duration
+"""
