@@ -17,6 +17,8 @@ This is my personal dotfiles repo. It has only what i need and nothing more.
 - Uses mouse no matter what you try
 - not in terminal.
 - Intellisense is slow.
+### You care about minimilsm, why use `smear-cursor.nvim`?
+- Good question, when i first switched from VSCode to Neovim I missed the smooth caret animation, got it back though.
 
 ## Structure
 - `nvim/.config/nvim/` my Neovim configuration.
