@@ -38,7 +38,7 @@ eval "$(starship init zsh)"
 alias nv="nvim"
 alias v="vim"
 alias ..="z .."
-alias ../..="z ../.."
+# git aliases are already provided with git plugin
 
 # PATH Variables.
 export PATH="$HOME/go/bin:$PATH"
