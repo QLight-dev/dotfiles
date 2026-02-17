@@ -23,6 +23,7 @@ This is my personal dotfiles repo. It has only what i need and nothing more.
 - `zsh/` my zsh configuration.
 - `tmux/.tmux.conf` my Tmux configuration.
 - `ghostty/.config/ghostty/` my Ghostty configuration.
+- `starship/.config/starship` my Starship configuration for asthetics
 - `kanata/kanata.kbd` my home row mods using kanata.
 - `scripts/.local/bin/` my own scripts for automation.
 
