@@ -7,8 +7,6 @@ $character
 """
 
 right_format = """
-$memory_usage\
-$cpu_load\
 $cmd_duration
 """
 
