@@ -20,3 +20,8 @@ vim.keymap.set({ "n", "v" }, "<leader>c", [["_c]], opts)
 
 -- Make 'x' delete without affecting the clipboard
 vim.keymap.set("n", "x", [["_x]], opts)
+
+-- mini
+vim.keymap.set("n", "<leader>e", function()
+	require("mini.files").open()
+end, { desc = "Open mini.files" })
