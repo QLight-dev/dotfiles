@@ -23,5 +23,6 @@ vim.keymap.set("n", "x", [["_x]], opts)
 
 -- mini
 vim.keymap.set("n", "<leader>e", function()
-	require("mini.files").open()
-end, { desc = "Open mini.files" })
+    local path = vim.fn.expand("%:p:h")
+    require("mini.files").open(path)
+end, { desc = "Open mini.files at current buffer" })
