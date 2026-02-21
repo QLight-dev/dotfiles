@@ -39,6 +39,9 @@ alias nv="nvim"
 alias v="vim"
 alias ..="z .."
 # git aliases are already provided with git plugin
+# suffix aliases
+alias -s md=glow
+alias -s go=bat
 
 # PATH Variables.
 export PATH="$HOME/go/bin:$PATH"
