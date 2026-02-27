@@ -11,7 +11,7 @@ return {
 				laststatus = 0, -- turn off the statusline in zen mode
 			},
 			twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
-			tmux = { enabled = true }, -- disables the tmux statusline
+			tmux = { enabled = false },
 		},
 	},
 }
