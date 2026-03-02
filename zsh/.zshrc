@@ -43,6 +43,11 @@ alias ..="z .."
 alias -s md=glow
 alias -s go=bat
 
+# load secrets
+if [ -f "$HOME/.secrets" ]; then
+  source "$HOME/.secrets"
+fi
+
 # PATH Variables.
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
