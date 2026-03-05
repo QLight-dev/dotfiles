@@ -35,11 +35,12 @@ return {
 					["<C-k>"] = cmp.mapping.select_prev_item(), -- Move up
 					["<C-y>"] = cmp.mapping.confirm({ select = true }), -- Confirm selection
 					["<C-n>"] = cmp.mapping.abort(), -- Close completion menu
-					["<C-Space>"] = cmp.mapping.complete(), -- Trigger completion	
+					["<C-Space>"] = cmp.mapping.complete(), -- Trigger completion
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
+					{ name = "codecompanion" },
 				}, {
 					{ name = "buffer" },
 				}),

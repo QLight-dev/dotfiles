@@ -23,6 +23,10 @@ vim.keymap.set("n", "x", [["_x]], opts)
 
 -- mini
 vim.keymap.set("n", "<leader>e", function()
-    local path = vim.fn.expand("%:p:h")
-    require("mini.files").open(path)
+	local path = vim.fn.expand("%:p:h")
+	require("mini.files").open(path)
 end, { desc = "Open mini.files at current buffer" })
+
+-- CodeCompanion.nvim
+vim.keymap.set("v", "<leader>cc", ":'<,'>CodeCompanion<CR>", opts)
+vim.keymap.set("n", "<leader>cc", ":CodeCompanionChat<CR>", opts)
