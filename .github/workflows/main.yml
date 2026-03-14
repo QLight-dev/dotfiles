@@ -8,49 +8,49 @@ on:
 jobs:
   lazy-sync:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required to push changes back to the repo
 
     steps:
-      # Step 1: Checkout repo
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          path: nvim # Checkout into a specific folder
 
-      # Step 2: Install Neovim stable tarball
       - name: Install Neovim
         run: |
-          sudo apt update
-          sudo apt install -y curl tar git
           curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
           tar xzvf nvim-linux-x86_64.tar.gz
           sudo mv nvim-linux-x86_64 /opt/nvim
           sudo ln -sf /opt/nvim/bin/nvim /usr/local/bin/nvim
-          nvim --version
 
-      # Step 3: Setup stow to link your config
-      - name: Setup stow
+      - name: Setup Config Directory
         run: |
-          sudo apt install -y stow
-          mkdir -p $HOME/.config
-          cd $GITHUB_WORKSPACE
+          mkdir -p ~/.config
+          cd $GITHUB_WORKSPACE/nvim
           stow nvim
 
-      # Step 4: Install Lazy.nvim manually if missing
       - name: Install Lazy.nvim
         run: |
-          git clone --filter=blob:none https://github.com/folke/lazy.nvim.git --branch=stable ~/.local/share/nvim/lazy/lazy.nvim || echo "Lazy.nvim already exists"
+          LAZY_PATH="$HOME/.local/share/nvim/lazy/lazy.nvim"
+          if [ ! -d "$LAZY_PATH" ]; then
+            git clone --filter=blob:none --branch=stable https://github.com/folke/lazy.nvim.git "$LAZY_PATH"
+          fi
 
-      # Step 5: Run Lazy.nvim sync headlessly
       - name: Lazy.nvim Sync
         run: |
-          nvim --headless -c 'Lazy sync' -c 'qa'
+          nvim --headless "+Lazy! sync" +qa
 
-      # Step 6: Commit updated lockfile if changed
-      - name: Commit Updated Lockfile
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
+      - name: Commit and Push Lockfile
         run: |
-          cd $HOME/.config/nvim
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
+          cd nvim
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add lazy-lock.json
-          git diff --cached --quiet || git commit -m "Daily Lazy.nvim auto-sync"
-          git push https://$GH_PAT@github.com/QLight-dev/dotfiles.git main
+          # Only commit and push if there are changes
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: daily lazy-lock.json update"
+            git push
+          else
+            echo "No changes to lockfile"
+          fi
