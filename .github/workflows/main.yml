@@ -19,10 +19,17 @@ jobs:
 
       - name: Install Neovim
         run: |
+          sudo apt update
+          sudo apt install -y curl tar git
           curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
           tar xzvf nvim-linux-x86_64.tar.gz
           sudo mv nvim-linux-x86_64 /opt/nvim
           sudo ln -sf /opt/nvim/bin/nvim /usr/local/bin/nvim
+
+      - name: Install stow
+        run: |
+          sudo apt update
+          sudo apt install -y stow
 
       - name: Setup Config Directory
         run: |
