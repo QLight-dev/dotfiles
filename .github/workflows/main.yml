@@ -1,6 +1,5 @@
 name: Daily Lazy.nvim Sync
 
-# Run manually or on schedule (4am UTC)
 on:
   workflow_dispatch:
   schedule:
@@ -19,7 +18,7 @@ jobs:
       - name: Install Neovim
         run: |
           sudo apt update
-          sudo apt install -y curl tar
+          sudo apt install -y curl tar git
           curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
           tar xzvf nvim-linux-x86_64.tar.gz
           sudo mv nvim-linux-x86_64 /opt/nvim
@@ -34,15 +33,23 @@ jobs:
           cd $GITHUB_WORKSPACE
           stow nvim
 
-      # Step 4: Run Lazy.nvim sync headlessly
+      # Step 4: Install Lazy.nvim manually
+      - name: Install Lazy.nvim
+        run: |
+          LAZY_PATH="$HOME/.local/share/nvim/lazy/lazy.nvim"
+          if [ ! -d "$LAZY_PATH" ]; then
+            git clone --filter=blob:none --branch=stable https://github.com/folke/lazy.nvim.git "$LAZY_PATH"
+          fi
+
+      # Step 5: Run Lazy.nvim sync headlessly
       - name: Lazy.nvim Sync
         run: |
-          nvim --headless -c 'Lazy sync' -c 'qa'
+          nvim --headless -u $HOME/.config/nvim/init.lua -c 'Lazy sync' -c 'qa'
 
-      # Step 5: Commit updated lockfile if changed
+      # Step 6: Commit updated lockfile if changed
       - name: Commit Updated Lockfile
         env:
-          GH_PAT: ${{ secrets.GH_PAT }}   # Use your personal access token
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           cd $GITHUB_WORKSPACE/nvim/.config/nvim
           git config --global user.name "github-actions"
