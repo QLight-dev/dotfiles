@@ -41,7 +41,7 @@ jobs:
       # Step 5: Run Lazy.nvim sync headlessly
       - name: Lazy.nvim Sync
         run: |
-          nvim --headless -u $HOME/.config/nvim/init.lua -c 'Lazy sync' -c 'qa'
+          nvim --headless -c 'Lazy sync' -c 'qa'
 
       # Step 6: Commit updated lockfile if changed
       - name: Commit Updated Lockfile
