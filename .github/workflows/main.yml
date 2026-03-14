@@ -1,57 +1,36 @@
 name: Daily Lazy.nvim Sync
 
-# Run every day at 4am UTC
 on:
-  workflow_dispatch:
-  schedule:
+  schedule:                  # daily at 4am UTC
     - cron: '0 4 * * *'
+  workflow_dispatch:         # allow manual trigger
 
 jobs:
-  lazy-sync:
+  sync:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
-      # Step 1: Checkout your repo
-      - name: Checkout Repo
+      - name: Checkout config into $HOME/.config/nvim
         uses: actions/checkout@v3
+        with:
+          path: ${{ github.workspace }}/.config/nvim
 
-      # Step 2: Sync config to home directory
-      - name: Sync Neovim Config
+      - name: Setup Neovim (nightly)
+        uses: MunifTanjim/setup-neovim-action@v1
+        with:
+          tag: nightly
+
+      - name: Update plugins with Lazy.nvim
         run: |
-          mkdir -p $HOME/.config/nvim
-          rsync -av --delete ./ $HOME/.config/nvim/
+          nvim --headless "+Lazy! sync" +qa
+          # Optionally, check config health to catch errors:
+          nvim --headless "+checkhealth" +qa || true
 
-      # Step 3: Install Neovim latest release if not already installed
-      - name: Install Neovim
-        run: |
-          if ! command -v nvim >/dev/null 2>&1; then
-            sudo apt update
-            sudo apt install -y unzip curl
-            NVIM_VER=$(curl -s https://api.github.com/repos/neovim/neovim/releases/latest \
-                        | grep "tag_name" \
-                        | head -n 1 \
-                        | cut -d '"' -f 4)
-            curl -LO https://github.com/neovim/neovim/releases/download/$NVIM_VER/nvim-linux64.tar.gz
-            tar xzf nvim-linux64.tar.gz
-            sudo mv nvim-linux64 /opt/nvim
-            sudo ln -sf /opt/nvim/bin/nvim /usr/local/bin/nvim
-          else
-            echo "Neovim already installed, skipping..."
-          fi
-
-      # Step 4: Run Lazy.nvim sync headlessly
-      - name: Lazy.nvim Sync
-        run: |
-          nvim --headless +Lazy! sync +qa
-
-      # Step 5: Commit changes if any
-      - name: Commit Updated Lockfiles
+      - name: Commit any changes
         run: |
           cd $HOME/.config/nvim
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
-          git add .
-          git diff --cached --quiet || git commit -m "Daily Lazy.nvim auto-sync"
-          git push origin main
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "Daily Lazy.nvim sync"
+          git push
