@@ -14,42 +14,51 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
+        with:
+          path: dotfiles # Use a clear folder name for the checkout
 
-      - name: Install Neovim & Stow
+      - name: Install Neovim
         run: |
-          sudo apt update && sudo apt install -y curl tar git stow
-          # Using the specific 64-bit linux release URL
-          curl -L -o nvim-linux64.tar.gz https://github.com
-          sudo rm -rf /opt/nvim-linux64
-          sudo tar -C /opt -xzf nvim-linux64.tar.gz
-          sudo ln -sf /opt/nvim-linux64/bin/nvim /usr/local/bin/nvim
+          sudo apt update
+          sudo apt install -y curl tar git stow
+          curl -LO https://github.com
+          tar xzvf nvim-linux-x86_64.tar.gz
+          sudo mv nvim-linux-x86_64 /opt/nvim
+          sudo ln -sf /opt/nvim/bin/nvim /usr/local/bin/nvim
 
-      - name: Setup Config with Stow
+      - name: Setup Config Directory
         run: |
           mkdir -p ~/.config
-          # Links 'nvim/.config/nvim' to '$HOME/.config/nvim'
-          stow nvim -t $HOME
-          
-          # Verify files exist
-          ls -R ~/.config/nvim
+          # Navigate into the nvim package folder in your repo
+          cd $GITHUB_WORKSPACE/dotfiles/nvim
+          # Stow links everything inside nvim/ into your home directory (~)
+          # This puts init.lua at ~/.config/nvim/init.lua correctly
+          stow -v -t ~ .
+
+      - name: Install Lazy.nvim
+        run: |
+          LAZY_PATH="$HOME/.local/share/nvim/lazy/lazy.nvim"
+          if [ ! -d "$LAZY_PATH" ]; then
+            git clone --filter=blob:none --branch=stable https://github.com "$LAZY_PATH"
+          fi
 
       - name: Lazy.nvim Sync
         run: |
-          export XDG_CONFIG_HOME=$HOME/.config
-          # Headless sync
+          # Headless sync; wait for Lazy to finish before quitting
           nvim --headless "+Lazy! sync" +qa
 
       - name: Commit and Push Lockfile
         run: |
+          cd $GITHUB_WORKSPACE/dotfiles
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Use the path within your repository
+          # Add the specific path to your lockfile
           git add nvim/.config/nvim/lazy-lock.json
           
           if ! git diff --cached --quiet; then
             git commit -m "chore: daily lazy-lock.json update"
             git push
           else
-            echo "No changes to lockfile."
+            echo "No changes to lockfile"
           fi
