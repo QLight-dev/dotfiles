@@ -21,7 +21,6 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y curl tar git stow
-          # Using -o to explicitly name the output file avoids curl error 23
           curl -L -o nvim-linux-x86_64.tar.gz https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
           tar xzvf nvim-linux-x86_64.tar.gz
           sudo mv nvim-linux-x86_64 /opt/nvim
@@ -29,23 +28,25 @@ jobs:
 
       - name: Setup Config Directory
         run: |
+          # Clean up default runner paths to prevent Stow conflicts
+          rm -rf ~/.config/nvim
           mkdir -p ~/.config
-          # Navigate to where your stow package 'nvim' lives
+          # Navigate to your stow package folder
           cd $GITHUB_WORKSPACE/dotfiles/nvim
-          # Stow links everything inside the nvim/ folder to your Home (~)
-          # This puts init.lua at ~/.config/nvim/init.lua
+          # Maps dotfiles/nvim/.config/nvim/ to ~/.config/nvim/
           stow -v -t ~ .
 
-      - name: Install Lazy.nvim
+      - name: Install Lazy.nvim (Bootstrap)
         run: |
           LAZY_PATH="$HOME/.local/share/nvim/lazy/lazy.nvim"
+          mkdir -p "$(dirname "$LAZY_PATH")"
           if [ ! -d "$LAZY_PATH" ]; then
             git clone --filter=blob:none --branch=stable https://github.com "$LAZY_PATH"
           fi
 
       - name: Lazy.nvim Sync
         run: |
-          # The ! forces sync to run non-interactively
+          # Runs sync and waits for it to finish before quitting
           nvim --headless "+Lazy! sync" +qa
 
       - name: Commit and Push Lockfile
@@ -54,7 +55,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Add specifically from your repo structure
+          # Use the path relative to the repo root
           git add nvim/.config/nvim/lazy-lock.json
           
           if ! git diff --cached --quiet; then
