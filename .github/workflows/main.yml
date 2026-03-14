@@ -50,10 +50,10 @@ jobs:
 
       - name: Commit and Push Lockfile
         run: |
-          cd nvim
+          cd $GITHUB_WORKSPACE/nvim/.config/nvim
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add lazy-lock.json
+          git add .
           # Only commit and push if there are changes
           if ! git diff --cached --quiet; then
             git commit -m "chore: daily lazy-lock.json update"
