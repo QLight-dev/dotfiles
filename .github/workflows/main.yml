@@ -34,7 +34,7 @@ jobs:
       - name: Setup Config Directory
         run: |
           mkdir -p ~/.config
-          cd $GITHUB_WORKSPACE/nvim
+          cd $GITHUB_WORKSPACE
           stow nvim
 
       - name: Install Lazy.nvim
