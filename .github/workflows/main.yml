@@ -31,8 +31,8 @@ jobs:
         run: |
           sudo apt install -y stow
           mkdir -p $HOME/.config
-          cd $GITHUB_WORKSPACE/nvim
-          stow -t $HOME/.config nvim
+          cd $GITHUB_WORKSPACE
+          stow nvim
 
       # Step 4: Run Lazy.nvim sync headlessly
       - name: Lazy.nvim Sync
