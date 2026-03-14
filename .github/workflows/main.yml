@@ -15,13 +15,14 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
-          path: dotfiles # Use a clear folder name for the checkout
+          path: dotfiles
 
-      - name: Install Neovim
+      - name: Install Neovim and Stow
         run: |
           sudo apt update
           sudo apt install -y curl tar git stow
-          curl -LO https://github.com
+          # Using -o to explicitly name the output file avoids curl error 23
+          curl -L -o nvim-linux-x86_64.tar.gz https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
           tar xzvf nvim-linux-x86_64.tar.gz
           sudo mv nvim-linux-x86_64 /opt/nvim
           sudo ln -sf /opt/nvim/bin/nvim /usr/local/bin/nvim
@@ -29,10 +30,10 @@ jobs:
       - name: Setup Config Directory
         run: |
           mkdir -p ~/.config
-          # Navigate into the nvim package folder in your repo
+          # Navigate to where your stow package 'nvim' lives
           cd $GITHUB_WORKSPACE/dotfiles/nvim
-          # Stow links everything inside nvim/ into your home directory (~)
-          # This puts init.lua at ~/.config/nvim/init.lua correctly
+          # Stow links everything inside the nvim/ folder to your Home (~)
+          # This puts init.lua at ~/.config/nvim/init.lua
           stow -v -t ~ .
 
       - name: Install Lazy.nvim
@@ -44,7 +45,7 @@ jobs:
 
       - name: Lazy.nvim Sync
         run: |
-          # Headless sync; wait for Lazy to finish before quitting
+          # The ! forces sync to run non-interactively
           nvim --headless "+Lazy! sync" +qa
 
       - name: Commit and Push Lockfile
@@ -53,7 +54,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Add the specific path to your lockfile
+          # Add specifically from your repo structure
           git add nvim/.config/nvim/lazy-lock.json
           
           if ! git diff --cached --quiet; then
