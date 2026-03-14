@@ -50,7 +50,7 @@ jobs:
 
       - name: Commit and Push Lockfile
         run: |
-          cd $GITHUB_WORKSPACE/nvim/.config/nvim
+          cd  /home/runner/work/dotfiles/nvim/.config/nvim
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
