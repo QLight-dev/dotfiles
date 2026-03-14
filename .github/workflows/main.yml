@@ -35,7 +35,7 @@ jobs:
           echo "--- DEBUG: Config Directory Structure ---"
           ls -R ~/.config/nvim
 
-      - name: Install Lazy.nvim (Your Requested Command)
+      - name: Install Lazy.nvim
         run: |
           # Ensuring directory exists before cloning
           mkdir -p ~/.config/nvim/lazy.nvim
