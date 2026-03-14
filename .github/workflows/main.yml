@@ -22,10 +22,14 @@ jobs:
           rsync -av --delete ./ $HOME/.config/nvim/
 
       # Step 3: Install Neovim nightly (for Lazy.nvim headless)
-      - name: Install Neovim
-        uses: shivammathur/setup-neovim@v2
-        with:
-          neovim-version: nightly
+      - name: Install Neovim nightly
+        run: |
+          sudo apt update
+          sudo apt install -y unzip curl
+          curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+          tar xzf nvim-linux64.tar.gz
+          sudo mv nvim-linux64 /opt/nvim
+          sudo ln -s /opt/nvim/bin/nvim /usr/local/bin/nvim
 
       # Step 4: Run Lazy.nvim sync headlessly
       - name: Lazy.nvim Sync
