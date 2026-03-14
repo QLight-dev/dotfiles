@@ -9,6 +9,8 @@ on:
 jobs:
   lazy-sync:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       # Step 1: Checkout your repo
@@ -21,15 +23,23 @@ jobs:
           mkdir -p $HOME/.config/nvim
           rsync -av --delete ./ $HOME/.config/nvim/
 
-      # Step 3: Install Neovim nightly (for Lazy.nvim headless)
-      - name: Install Neovim nightly
+      # Step 3: Install Neovim latest release if not already installed
+      - name: Install Neovim
         run: |
-          sudo apt update
-          sudo apt install -y unzip curl
-          curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-          tar xzf nvim-linux64.tar.gz
-          sudo mv nvim-linux64 /opt/nvim
-          sudo ln -s /opt/nvim/bin/nvim /usr/local/bin/nvim
+          if ! command -v nvim >/dev/null 2>&1; then
+            sudo apt update
+            sudo apt install -y unzip curl
+            NVIM_VER=$(curl -s https://api.github.com/repos/neovim/neovim/releases/latest \
+                        | grep "tag_name" \
+                        | head -n 1 \
+                        | cut -d '"' -f 4)
+            curl -LO https://github.com/neovim/neovim/releases/download/$NVIM_VER/nvim-linux64.tar.gz
+            tar xzf nvim-linux64.tar.gz
+            sudo mv nvim-linux64 /opt/nvim
+            sudo ln -sf /opt/nvim/bin/nvim /usr/local/bin/nvim
+          else
+            echo "Neovim already installed, skipping..."
+          fi
 
       # Step 4: Run Lazy.nvim sync headlessly
       - name: Lazy.nvim Sync
