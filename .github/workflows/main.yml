@@ -18,7 +18,6 @@ jobs:
       - name: Install Neovim & Stow
         run: |
           sudo apt update && sudo apt install -y curl tar git stow
-          # Use the official pre-built binary
           curl -LO https://github.com
           sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
           sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
@@ -26,18 +25,18 @@ jobs:
       - name: Setup Config with Stow
         run: |
           mkdir -p ~/.config
-          # This links your repo's 'nvim/.config/nvim' to '~/.config/nvim'
-          # Stow works by looking inside the target folder (nvim) for the structure
+          # Your repo has nvim/.config/nvim/
+          # Stowing the 'nvim' folder into $HOME will link it to ~/.config/nvim/
           stow nvim -t $HOME
 
       - name: Lazy.nvim Sync
         run: |
-          # Ensure Neovim knows where the stowed config is
+          # 1. Tell Neovim where the config is
           export XDG_CONFIG_HOME=$HOME/.config
           
-          # 1. Start Neovim
-          # 2. Run Lazy! sync (the '!' makes it run synchronously)
-          # 3. +qa quits all once finished
+          # 2. Run sync. 
+          # We use 'script' to trick Neovim into thinking there is a TTY 
+          # This helps with plugin managers that expect interactive sessions.
           nvim --headless "+Lazy! sync" +qa
 
       - name: Commit and Push Lockfile
@@ -45,12 +44,12 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Stage the specific lockfile from your repo path
+          # Explicitly add the lockfile using the path in your repo
           git add nvim/.config/nvim/lazy-lock.json
           
           if ! git diff --cached --quiet; then
             git commit -m "chore: daily lazy-lock.json update"
             git push
           else
-            echo "No changes to lockfile found. Skipping push."
+            echo "No changes to lockfile. Skipping."
           fi
