@@ -1,14 +1,17 @@
 #!/usr/bin/env zsh
 clear
 
+echo "requesting sudo access..."
+sudo echo "received sudo access!"
+
 # update packages
 echo "updating packages..."
-sudo pacman -Syyu --noconfirm
+# throw output to /dev/null to make output smaller
+sudo pacman -Syyu --noconfirm > /dev/null
 
-# update nvim
-echo "update neovim... (manually)"
+echo "update neovim..."
 cd ~/dotfiles
-nvim
+nvim --headless "+Lazy! sync" +qa > /dev/null
 
 echo "commiting changes..."
 git add nvim/.config/nvim/lazy-lock.json
@@ -17,6 +20,6 @@ git push
 
 # update oh my zsh
 echo "updating oh-my-zsh"
-$ZSH/tools/upgrade.sh
+$ZSH/tools/upgrade.sh > /dev/null
 
 echo "done"
