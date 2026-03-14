@@ -7,8 +7,8 @@ return {
 
 	opts = {
 		strategies = {
-			chat = { adapter = "groq_big" },
-			inline = { adapter = "groq_small" },
+			chat = { adapter = "groq_big", stream = false },
+			inline = { adapter = "groq_small", stream = false },
 		},
 
 		adapters = {
