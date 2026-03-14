@@ -2,6 +2,7 @@ name: Daily Lazy.nvim Sync
 
 # Run every day at 4am UTC
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 4 * * *'
 
