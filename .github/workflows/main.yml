@@ -18,25 +18,25 @@ jobs:
       - name: Install Neovim & Stow
         run: |
           sudo apt update && sudo apt install -y curl tar git stow
-          # Using -L to follow redirects and -o to specify the output file
-          curl -L -o nvim.tar.gz https://github.com
-          sudo tar -C /opt -xzf nvim.tar.gz
-          sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
+          # Using the specific 64-bit linux release URL
+          curl -L -o nvim-linux64.tar.gz https://github.com
+          sudo rm -rf /opt/nvim-linux64
+          sudo tar -C /opt -xzf nvim-linux64.tar.gz
+          sudo ln -sf /opt/nvim-linux64/bin/nvim /usr/local/bin/nvim
 
       - name: Setup Config with Stow
         run: |
           mkdir -p ~/.config
-          # This links 'nvim/.config/nvim' from your repo to '~/.config/nvim'
+          # Links 'nvim/.config/nvim' to '$HOME/.config/nvim'
           stow nvim -t $HOME
           
-          # Debug: Verify the config is where it should be
+          # Verify files exist
           ls -R ~/.config/nvim
 
       - name: Lazy.nvim Sync
         run: |
-          # Ensure Neovim finds your config
           export XDG_CONFIG_HOME=$HOME/.config
-          # Run sync synchronously and quit
+          # Headless sync
           nvim --headless "+Lazy! sync" +qa
 
       - name: Commit and Push Lockfile
@@ -44,12 +44,12 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Stage the specific file in your repo structure
+          # Use the path within your repository
           git add nvim/.config/nvim/lazy-lock.json
           
           if ! git diff --cached --quiet; then
             git commit -m "chore: daily lazy-lock.json update"
             git push
           else
-            echo "No changes to lockfile found."
+            echo "No changes to lockfile."
           fi
