@@ -17,50 +17,49 @@ jobs:
         with:
           path: dotfiles
 
-      - name: Install Neovim and Stow
+      - name: Install Dependencies
         run: |
           sudo apt update
           sudo apt install -y curl tar git stow
-          curl -L -o nvim-linux-x86_64.tar.gz https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
-          tar xzvf nvim-linux-x86_64.tar.gz
+          curl -L -o nvim.tar.gz https://github.com
+          tar xzvf nvim.tar.gz
           sudo mv nvim-linux-x86_64 /opt/nvim
           sudo ln -sf /opt/nvim/bin/nvim /usr/local/bin/nvim
 
-      - name: Setup Config Directory
+      - name: Setup Config (Stow)
         run: |
-          # Clean up default runner paths to prevent Stow conflicts
           rm -rf ~/.config/nvim
           mkdir -p ~/.config
-          # Navigate to your stow package folder
           cd $GITHUB_WORKSPACE/dotfiles/nvim
-          # Maps dotfiles/nvim/.config/nvim/ to ~/.config/nvim/
           stow -v -t ~ .
+          echo "--- DEBUG: Config Directory Structure ---"
+          ls -R ~/.config/nvim
 
-      - name: Install Lazy.nvim (Bootstrap)
+      - name: Install Lazy.nvim (Your Requested Command)
         run: |
-          LAZY_PATH="$HOME/.local/share/nvim/lazy/lazy.nvim"
-          mkdir -p "$(dirname "$LAZY_PATH")"
-          if [ ! -d "$LAZY_PATH" ]; then
-            git clone --filter=blob:none --branch=stable https://github.com "$LAZY_PATH"
-          fi
+          # Ensuring directory exists before cloning
+          mkdir -p ~/.config/nvim/lazy.nvim
+          git clone --filter=blob:none https://github.com/folke/lazy.nvim.git ~/.config/nvim/lazy.nvim
+          echo "--- DEBUG: Lazy path check ---"
+          ls -d ~/.config/nvim/lazy.nvim
 
-      - name: Lazy.nvim Sync
+      - name: Lazy.nvim Sync with Debug Logs
         run: |
-          # Runs sync and waits for it to finish before quitting
-          nvim --headless "+Lazy! sync" +qa
+          # Use --headless and ! for waiting. 
+          # Environment variable NVIM_LOG_FILE helps catch startup errors.
+          export NVIM_LOG_FILE=$GITHUB_WORKSPACE/nvim_debug.log
+          nvim --headless "+Lazy! sync" +qa || (cat $NVIM_LOG_FILE && exit 1)
+          echo "--- DEBUG: Sync Complete ---"
 
-      - name: Commit and Push Lockfile
+      - name: Commit and Push
         run: |
           cd $GITHUB_WORKSPACE/dotfiles
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # Use the path relative to the repo root
           git add nvim/.config/nvim/lazy-lock.json
-          
           if ! git diff --cached --quiet; then
             git commit -m "chore: daily lazy-lock.json update"
             git push
           else
-            echo "No changes to lockfile"
+            echo "No changes detected in lockfile."
           fi
