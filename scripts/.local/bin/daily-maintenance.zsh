@@ -6,12 +6,11 @@ sudo echo "received sudo access!"
 
 # update packages
 echo "updating packages..."
-# throw output to /dev/null to make output smaller
-sudo pacman -Syyu --noconfirm > /dev/null
+sudo pacman -Syyu --noconfirm
 
 echo "update neovim..."
 cd ~/dotfiles
-nvim --headless "+Lazy! sync" +qa > /dev/null
+nvim --headless "+Lazy! sync" +qa
 
 echo "commiting changes..."
 git add nvim/.config/nvim/lazy-lock.json
