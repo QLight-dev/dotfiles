@@ -1,11 +1,12 @@
 FROM ubuntu:24.04
 
-# Install essentials
+# Essentials
 RUN apt-get update && apt-get install -y git curl stow unzip && rm -rf /var/lib/apt/lists/*
 
-# Download and install latest Neovim AppImage
-RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage && \
-    chmod u+x nvim-linux-x86_64.appimage && \
-    mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
+# Download latest stable Neovim tarball
+RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && \
+    tar xzf nvim-linux-x86_64.tar.gz && \
+    mv nvim-linux-x86_64 /usr/local/nvim && \
+    ln -s /usr/local/nvim/bin/nvim /usr/local/bin/nvim
 
 WORKDIR /root
