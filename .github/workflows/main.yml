@@ -1,0 +1,44 @@
+name: Daily Neovim Update
+
+on:
+  schedule:
+    - cron: '0 4 * * *' # runs daily at 4:00 UTC
+  workflow_dispatch: # manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout your dotfiles repo
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      # 2. Build Docker container
+      - name: Build Docker container
+        run: docker build -t nvim-ci .
+
+      # 3. Run container: stow nvim and Lazy.nvim sync
+      - name: Run Neovim update
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/root/dotfiles \
+            nvim-ci bash -c "\
+              cd /root/dotfiles && \
+              stow -v -t ~/.config nvim && \
+              nvim --headless '+Lazy! sync' +qa \
+            "
+
+      # 4. Commit & push changes if any
+      - name: Commit updates
+        run: |
+          cd $GITHUB_WORKSPACE
+          git config --global user.name "CI Bot"
+          git config --global user.email "ci-bot@example.com"
+          if [ -n "$(git status --porcelain)" ]; then
+            git add .
+            git commit -m "CI: update Neovim plugins"
+            git push origin main
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
