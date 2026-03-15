@@ -10,9 +10,9 @@ RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linu
     ln -s /usr/local/nvim/bin/nvim /usr/local/bin/nvim
 
 # stylua
-curl -L https://github.com/JohnnyMorganz/StyLua/releases/latest/download/stylua-linux.zip -o stylua.zip
-unzip stylua.zip -d stylua
-sudo mv stylua/stylua /usr/local/bin/
-chmod +x /usr/local/bin/stylua
+RUN curl -L https://github.com/JohnnyMorganz/StyLua/releases/latest/download/stylua-linux.zip -o stylua.zip
+RUN unzip stylua.zip -d stylua
+RUN sudo mv stylua/stylua /usr/local/bin/
+RUN chmod +x /usr/local/bin/stylua
 
 WORKDIR /root
