@@ -10,12 +10,9 @@ sudo pacman -Syyu --noconfirm
 
 echo "update neovim..."
 cd ~/dotfiles
-nvim --headless "+Lazy! sync" +qa
-
-echo "commiting changes..."
-git add nvim/.config/nvim/lazy-lock.json
-git commit -m "chore(lazy.nvim): update plugins"
-git push
+# ci pipline already updates lockfile, only need to sync with lockfile
+git pull
+nvim --headless "+Lazy! restore" +qa
 
 # update oh my zsh
 echo "updating oh-my-zsh"
