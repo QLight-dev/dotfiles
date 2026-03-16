@@ -1,9 +1,6 @@
 #!/usr/bin/env zsh
 clear
 
-echo "requesting sudo access..."
-sudo echo "received sudo access!"
-
 # update packages
 echo "updating packages..."
 sudo pacman -Syyu --noconfirm
