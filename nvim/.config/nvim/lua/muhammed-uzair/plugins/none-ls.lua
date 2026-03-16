@@ -10,6 +10,9 @@ return {
 				-- golang
 				null_ls.builtins.formatting.goimports,
 				null_ls.builtins.diagnostics.golangci_lint,
+
+				-- SQL
+				null_ls.builtins.formatting.sql_formatter,
 			},
 		})
 

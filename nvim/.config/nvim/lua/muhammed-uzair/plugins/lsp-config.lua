@@ -17,7 +17,6 @@ return {
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
-			-- 1. Modern LspAttach Autocommand (Handles keybindings globally)
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(args)
 					local opts = { buffer = args.buf }
@@ -28,10 +27,8 @@ return {
 				end,
 			})
 
-			-- 2. Configure capabilities
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			-- 3. Use 2026 vim.lsp.config API
 			-- Go Configuration
 			vim.lsp.config("gopls", { capabilities = capabilities })
 			vim.lsp.enable("gopls")
@@ -39,6 +36,10 @@ return {
 			-- Lua Configuration
 			vim.lsp.config("lua_ls", { capabilities = capabilities })
 			vim.lsp.enable("lua_ls")
+
+			-- SQL Configuration
+			vim.lsp.config("sqlls", {capabilities = capabilities})
+			vim.lsp.enable("sqlls")
 
 			-- 4. Modern Diagnostic Config
 			vim.diagnostic.config({

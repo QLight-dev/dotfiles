@@ -9,6 +9,7 @@ return {
 			ensure_installed = {
 				-- coding
 				"go",
+				"sql", -- databases & data
 
 				-- config
 				"lua", -- nvim
