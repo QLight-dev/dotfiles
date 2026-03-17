@@ -1,6 +1,1 @@
-CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, age INTEGER);
-
-SELECT
-  *
-FROM
-  users;
+INSERT blah IN blah
