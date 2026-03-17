@@ -2,7 +2,7 @@ name: Daily Neovim Update
 
 on:
   schedule:
-    - cron: '0 4 * * *' # runs daily at 4:00 UTC
+    - cron: '0 8 * * *' # runs daily at 8:00 UTC
   workflow_dispatch: # manual trigger
 
 jobs:
