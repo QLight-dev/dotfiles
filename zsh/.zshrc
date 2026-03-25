@@ -51,6 +51,7 @@ fi
 # PATH Variables.
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export LD_PRELOAD=/usr/lib/libsodium.so # for enteauth where the build is corrupted or something like that (i have no idea why)
 
 # Custom Functions
 mkcd() {
