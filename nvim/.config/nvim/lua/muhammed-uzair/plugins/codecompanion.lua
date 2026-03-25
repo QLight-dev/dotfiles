@@ -7,40 +7,28 @@ return {
 
 	opts = {
 		strategies = {
-			chat = { adapter = "groq_big", stream = false },
-			inline = { adapter = "groq_small", stream = false },
+			chat = { adapter = "groq" },
+			inline = { adapter = "groq" },
 		},
 
 		adapters = {
-			http = {
-				groq_big = function()
-					return require("codecompanion.adapters").extend("openai_compatible", {
-						env = {
-							api_key = "GROQ_API_KEY",
-							url = "https://api.groq.com/openai",
-						},
-						schema = {
-							model = {
-								default = "llama-3.3-70b-versatile",
+			groq = function()
+				return require("codecompanion.adapters").extend("openai_compatible", {
+					env = {
+						api_key = "GROQ_API_KEY",
+						url = "https://api.groq.com/openai",
+					},
+					schema = {
+						model = {
+							default = "qwen/qwen3-32b",
+							choices = {
+								"openai/gpt-oss-120b",
+								"qwen/qwen3-32b",
 							},
 						},
-					})
-				end,
-
-				groq_small = function()
-					return require("codecompanion.adapters").extend("openai_compatible", {
-						env = {
-							api_key = "GROQ_API_KEY",
-							url = "https://api.groq.com/openai",
-						},
-						schema = {
-							model = {
-								default = "llama-3.1-8b-instant",
-							},
-						},
-					})
-				end,
-			},
+					},
+				})
+			end,
 		},
 	},
 }
