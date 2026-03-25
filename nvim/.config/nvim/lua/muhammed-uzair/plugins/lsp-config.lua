@@ -38,8 +38,8 @@ return {
 			vim.lsp.enable("lua_ls")
 
 			-- SQL Configuration
-			vim.lsp.config("sqls", {capabilities = capabilities})
-			vim.lsp.enable("sqls")
+			vim.lsp.config("sqlls", {capabilities = capabilities})
+			vim.lsp.enable("sqlls")
 
 			-- 4. Modern Diagnostic Config
 			vim.diagnostic.config({
