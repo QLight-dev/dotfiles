@@ -63,11 +63,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_CICD_WEBHOOK_URL }}
-          # Use GitHub brand colors: Green (#2ea44f) or Red (#cb2431)
           SLACK_COLOR: ${{ job.status == 'success' && '#2ea44f' || '#cb2431' }}
-          # Gaslight mode: On
-          SLACK_USERNAME: "GitHub"
-          SLACK_ICON: "https://github.githubassets.com"
           SLACK_TITLE: "Workflow: Daily Neovim Update"
           SLACK_MESSAGE: |
             *Status:* ${{ job.status }}
@@ -78,4 +74,4 @@ jobs:
             
             <https://github.com{{ github.repository }}/actions/runs/${{ github.run_id }}|View run details>
           SLACK_FOOTER: "via GitHub Actions in Repo QLight/dotfiles"
-          MSG_MINIMAL: true
+          MSG_MINIMAL: false
