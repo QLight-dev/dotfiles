@@ -12,7 +12,7 @@ jobs:
     steps:
       # 1. Checkout your dotfiles repo
       - name: Checkout repo
-        uses: actions/checkout@v4 # Updated to v4 for Node 20 support
+        uses: actions/checkout@v4
 
       # 2. Build Docker container
       - name: Build Docker container
@@ -31,16 +31,14 @@ jobs:
               nvim --headless '+Lazy! sync' +qa \
             " > lazy_output.txt 2>&1 || true
           
-          # 1. Filter for success lines
-          # 2. Exclude markdown-preview.nvim because it always reports false-positive local changes
-          # 3. Format into "Plugin: Commit Message"
+          # Filter for success lines and format them
           UPDATES=$(grep "HEAD is now at" lazy_output.txt | grep -v "markdown-preview.nvim" | sed 's/.*\[\([^]]*\)\].*at \([^ ]*\) \(.*\)/\1: \2 - \3/')
           
           if [ -z "$UPDATES" ]; then
             UPDATES="No plugins required updates today."
           fi
           
-          # Store in GITHUB_OUTPUT (handling multi-line strings for Slack)
+          # Store in GITHUB_OUTPUT for the Slack step
           echo "plugin_updates<<EOF" >> $GITHUB_OUTPUT
           echo "$UPDATES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -51,28 +49,33 @@ jobs:
           git config --global user.name "CI Bot"
           git config --global user.email "ci-bot@noreply.github.com"
           
-          # We check if lazy-lock.json or other files changed
           if [ -n "$(git status --porcelain)" ]; then
             git add .
-            git commit -m "CI: update Neovim plugins"
+            git commit -m "ci(daily neovim update): addd slack notifying (overkill but idc)"
             git push origin main
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
-      # 5. Send the clean notification to Slack
+      # 5. Send the "Official-looking" GitHub Notification
       - name: Send Slack Notification
         if: always()
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_CICD_WEBHOOK_URL }}
-          SLACK_COLOR: ${{ job.status == 'success' && 'good' || 'danger' }}
-          SLACK_TITLE: "Neovim Update: ${{ job.status }}"
+          # Use GitHub brand colors: Green (#2ea44f) or Red (#cb2431)
+          SLACK_COLOR: ${{ job.status == 'success' && '#2ea44f' || '#cb2431' }}
+          # Gaslight mode: On
+          SLACK_USERNAME: "GitHub"
+          SLACK_ICON: "https://github.githubassets.com"
+          SLACK_TITLE: "Workflow: Daily Neovim Update"
           SLACK_MESSAGE: |
+            *Status:* ${{ job.status }}
             *Updated Plugins:*
             ```
             ${{ steps.nvim_sync.outputs.plugin_updates }}
             ```
             
-            <https://github.com{{ github.repository }}/actions/runs/${{ github.run_id }}|View Build Logs>
-          SLACK_FOOTER: "Repo: QLight/dotfiles"
+            <https://github.com{{ github.repository }}/actions/runs/${{ github.run_id }}|View run details>
+          SLACK_FOOTER: "via GitHub Actions in Repo QLight/dotfiles"
+          MSG_MINIMAL: true
