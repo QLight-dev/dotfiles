@@ -74,4 +74,3 @@ jobs:
             
             <https://github.com{{ github.repository }}/actions/runs/${{ github.run_id }}|View run details>
           SLACK_FOOTER: "via GitHub Actions in Repo QLight/dotfiles"
-          MSG_MINIMAL: false
