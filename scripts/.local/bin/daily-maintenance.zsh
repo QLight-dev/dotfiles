@@ -15,4 +15,7 @@ nvim --headless "+Lazy! restore" +qa
 echo "updating oh-my-zsh"
 $ZSH/tools/upgrade.sh > /dev/null
 
+# update flatpak
+flatpak update
+
 echo "done"
