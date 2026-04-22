@@ -1,4 +1,6 @@
 #!/usr/bin/env zsh
+set -e # stop the script when an error happens to be able to fix the bug on time
+
 clear
 
 # update packages
