@@ -18,6 +18,6 @@ echo "updating oh-my-zsh"
 $ZSH/tools/upgrade.sh 
 
 # update flatpak
-flatpak update
+flatpak update -y
 
 echo "done"
