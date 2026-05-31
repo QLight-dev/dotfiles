@@ -51,7 +51,7 @@ jobs:
           
           if [ -n "$(git status --porcelain)" ]; then
             git add .
-            git commit -m "ci(daily neovim update): addd slack notifying (overkill but idc)"
+            git commit -m "chore(daily neovim update): update all lazy.nvim packages"
             git push origin main
           fi
         env:
