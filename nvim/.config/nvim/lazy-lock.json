@@ -3,7 +3,7 @@
   "catppuccin": { "branch": "main", "commit": "05e8787020dcfdb937bf2ff23855ea2415b4e072" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "cbc7b02bb99fae35cb42f514762b89b5126651ef" },
   "cmp_luasnip": { "branch": "master", "commit": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90" },
-  "codecompanion.nvim": { "branch": "main", "commit": "edf049c3d36e86d067efce9c901eb4229110d749" },
+  "codecompanion.nvim": { "branch": "main", "commit": "9455f15ecd356858fca2b4a31b9285180376d6fe" },
   "friendly-snippets": { "branch": "main", "commit": "6cd7280adead7f586db6fccbd15d2cac7e2188b9" },
   "godotdev.nvim": { "branch": "master", "commit": "889312817347c7ff48104ecca04e258961962b17" },
   "harpoon": { "branch": "harpoon2", "commit": "87b1a3506211538f460786c23f98ec63ad9af4e5" },
