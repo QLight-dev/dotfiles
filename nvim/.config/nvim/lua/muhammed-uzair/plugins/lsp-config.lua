@@ -29,17 +29,13 @@ return {
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			-- Go Configuration
-			vim.lsp.config("gopls", { capabilities = capabilities })
-			vim.lsp.enable("gopls")
-
 			-- Lua Configuration
 			vim.lsp.config("lua_ls", { capabilities = capabilities })
 			vim.lsp.enable("lua_ls")
 
-			-- SQL Configuration
-			vim.lsp.config("sqlls", {capabilities = capabilities})
-			vim.lsp.enable("sqlls")
+      -- C# Configuration
+      vim.lsp.config("roslyn-language-server", {capabilities = capabilities})
+      vim.lsp.enable("roslyn-language-server")
 
 			-- 4. Modern Diagnostic Config
 			vim.diagnostic.config({
