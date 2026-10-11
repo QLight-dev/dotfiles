@@ -19,7 +19,7 @@ HIST_STAMPS="mm/dd/yyyy"
 
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-interactive-cd zsh-vi-mode)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-interactive-cd)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -53,6 +53,7 @@ export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export LD_PRELOAD=/usr/lib/libsodium.so # for enteauth where the build is corrupted or something like that (i have no idea why)
 export PATH="$PATH:$HOME/.dotnet/tools"
+export PATH="$PATH:$HOME/.cargo/bin"
 
 # Custom Functions
 mkcd() {
