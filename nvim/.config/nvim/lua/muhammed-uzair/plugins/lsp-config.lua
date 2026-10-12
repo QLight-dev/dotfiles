@@ -33,9 +33,9 @@ return {
 			vim.lsp.config("lua_ls", { capabilities = capabilities })
 			vim.lsp.enable("lua_ls")
 
-      -- C# Configuration
-      vim.lsp.config("roslyn-language-server", {capabilities = capabilities})
-      vim.lsp.enable("roslyn-language-server")
+      -- Rust Configuration
+      vim.lsp.config("rust-analyzer", {capabilities = capabilities})
+      vim.lsp.enable("rust-analyzer")
 
 			-- 4. Modern Diagnostic Config
 			vim.diagnostic.config({
