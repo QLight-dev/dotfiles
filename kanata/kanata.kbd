@@ -3,8 +3,10 @@
 )
 
 (defsrc
+  caps
   f d s a
   j k l ;
+  h
 )
 
 (defvar
@@ -13,6 +15,8 @@
 )
 
 (defalias
+  caps-nav (tap-hold $tap-time $hold-time esc (layer-toggle nav))
+
   f-mod (tap-hold $tap-time $hold-time f lctrl)
   d-mod (tap-hold $tap-time $hold-time d lsft)
   s-mod (tap-hold $tap-time $hold-time s lalt)
@@ -25,6 +29,15 @@
 )
 
 (deflayer base
+  @caps-nav
   @f-mod @d-mod @s-mod @a-mod
   @j-mod @k-mod @l-mod @;-mod
+  h
+)
+
+(deflayer nav
+  _
+  _ _ _ _
+  down up right _
+  left
 )
