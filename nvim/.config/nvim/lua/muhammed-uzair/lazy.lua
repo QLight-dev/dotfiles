@@ -19,7 +19,6 @@ require("lazy").setup({
   spec = {
     -- import your plugins
     { import = "muhammed-uzair.plugins" },
-    { import = "muhammed-uzair.plugins.notes" },
   },
   -- automatically check for plugin updates
   checker = { enabled = true },
