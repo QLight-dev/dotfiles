@@ -2,7 +2,7 @@ require("muhammed-uzair.core")
 require("muhammed-uzair.lazy")
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*.go",
+	pattern = "*.rs",
 	callback = function()
 		local params = vim.lsp.util.make_range_params()
 		params.context = { only = { "source.organizeImports" } }
