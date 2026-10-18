@@ -48,3 +48,5 @@
 --     column_width = 0.97,
 --   },
 -- })
+
+os.execute("hyprctl setcursor Hexmask-Hypr 24")
