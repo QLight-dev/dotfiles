@@ -23,6 +23,9 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-interactive-cd)
 
 source $ZSH/oh-my-zsh.sh
 
+# vi mode
+bindkey -v
+
 # exports
 export EDITOR="nvim"
 export LANG=en_US.UTF-8
