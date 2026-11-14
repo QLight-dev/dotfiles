@@ -22,6 +22,8 @@
           "id": "omarchy.system-update"
         }
       ],
+      "centerBegin": [],
+      "centerEnd": [],
       "left": [
         {
           "id": "omarchy.menu"
@@ -52,7 +54,8 @@
         {
           "id": "omarchy.power"
         }
-      ]
+      ],
+      "tray": []
     },
     "position": "top",
     "transparent": false
@@ -60,9 +63,9 @@
   "cloneSourceRestores": [
     "io.github.sirjul1337.lock-explorer"
   ],
-  "disabledPlugins": [
-    "omarchy.lock"
-  ],
+  "dock": {
+    "autohide": true
+  },
   "idle": {
     "lock": 300,
     "screensaver": 150
