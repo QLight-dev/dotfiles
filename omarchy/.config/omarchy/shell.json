@@ -1,29 +1,13 @@
 {
+  "version": 1,
+  "idle": {
+    "screensaver": 150,
+    "lock": 300
+  },
   "bar": {
-    "centerAnchor": "omarchy.clock",
+    "position": "top",
+    "background": "opaque",
     "layout": {
-      "center": [
-        {
-          "id": "omarchy.keyboard-layout"
-        },
-        {
-          "id": "omarchy.indicators"
-        },
-        {
-          "format": "dddd HH:mm",
-          "formatAlt": "d MMMM 'W'ww yyyy",
-          "id": "omarchy.clock",
-          "verticalFormat": "HH\n—\nmm"
-        },
-        {
-          "id": "omarchy.weather"
-        },
-        {
-          "id": "omarchy.system-update"
-        }
-      ],
-      "centerBegin": [],
-      "centerEnd": [],
       "left": [
         {
           "id": "omarchy.menu"
@@ -32,9 +16,57 @@
           "id": "omarchy.workspaces"
         }
       ],
+      "centerBegin": [
+        {
+          "id": "omarchy.indicators"
+        }
+      ],
+      "center": [
+        {
+          "id": "omarchy.clock",
+          "format": "dddd HH:mm",
+          "formatAlt": "d MMMM 'W'ww yyyy",
+          "verticalFormat": "HH\n—\nmm"
+        }
+      ],
+      "centerEnd": [
+        {
+          "id": "omarchy.elsewhen",
+          "cities": [
+            {
+              "name": "Dubai",
+              "zone": "Asia/Dubai"
+            },
+            {
+              "name": "Karachi",
+              "zone": "Asia/Karachi"
+            },
+            {
+              "name": "Manchester",
+              "zone": "Europe/London"
+            },
+            {
+              "name": "Dallas",
+              "zone": "America/Chicago",
+              "lat": 32.78306,
+              "lon": -96.80667,
+              "region": "Texas, US"
+            }
+          ]
+        },
+        {
+          "id": "omarchy.weather"
+        },
+        {
+          "id": "omarchy.system-update"
+        }
+      ],
       "right": [
         {
           "id": "omarchy.tray"
+        },
+        {
+          "id": "omarchy.keyboard-layout"
         },
         {
           "id": "omarchy.agents"
@@ -56,19 +88,19 @@
         }
       ],
       "tray": []
-    },
-    "position": "top",
-    "transparent": false
+    }
   },
-  "cloneSourceRestores": [
-    "io.github.sirjul1337.lock-explorer"
-  ],
   "dock": {
-    "autohide": true
-  },
-  "idle": {
-    "lock": 300,
-    "screensaver": 150
+    "position": "bottom",
+    "pinned": [
+      "org.gnome.Nautilus",
+      "chromium",
+      "foot",
+      "omacalc",
+      "omawrite",
+      "X",
+      "YouTube"
+    ]
   },
   "plugins": [
     {
@@ -76,13 +108,12 @@
       "design": "rain",
       "avatar": "/home/muhammed-uzair/Downloads/Profile.png",
       "openAs": "full"
-    },
-    {
-      "id": "taxin.cursor-style"
     }
   ],
-  "version": 1,
   "disabledPlugins": [
     "omarchy.lock"
+  ],
+  "cloneSourceRestores": [
+    "io.github.sirjul1337.lock-explorer"
   ]
 }
