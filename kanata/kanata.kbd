@@ -6,7 +6,7 @@
   caps
   f d s a
   j k l ;
-  h
+  h w b
 )
 
 (defvar
@@ -32,12 +32,12 @@
   @caps-nav
   @f-mod @d-mod @s-mod @a-mod
   @j-mod @k-mod @l-mod @;-mod
-  h
+  h w b
 )
 
 (deflayer nav
   _
   _ _ _ _
   down up right _
-  left
+  left C-right C-left
 )
