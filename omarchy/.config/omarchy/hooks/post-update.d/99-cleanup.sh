@@ -1,19 +1,33 @@
 #!/usr/bin/env bash
+set -e
 
-# 1. Update personal configurations
 cd /home/muhammed-uzair/dotfiles
-git pull
-nvim --headless "+Lazy! restore" +qa
+nvim --headless "+Lazy! sync" +qa
+git push
 
-# 2. Update shell and flatpaks
-$ZSH/tools/upgrade.sh 
+if [[ -n $(git status -s) ]]; then
+    git add .
+    git commit -m "Auto-update dotfiles: $(date +'%Y-%m-%d %H:%M:%S')"
+fi
+
+
+omz update
 flatpak update -y
 
-# 3. Clean and optimize system
 sudo paccache -rk1
-[ -n "$(pacman -Qdtq)" ] && sudo pacman -Rns $(pacman -Qdtq) --noconfirm
+
+if orphans=$(pacman -Qdtq); then
+    sudo pacman -Rns $orphans --noconfirm
+fi
+
 fc-cache -f
 sudo fstrim -av
 
-# 4. Notify completion
-notify-send "System Maintained" "Pacman cache cleaned, orphans removed, and SSD trimmed." --icon=system-software-update
+read -p "Do you want to restart now? [y/N]: " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "Rebooting..."
+    sudo reboot
+else
+    echo "Reboot skipped."
+fi
