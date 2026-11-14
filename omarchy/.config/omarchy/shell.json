@@ -72,12 +72,17 @@
   },
   "plugins": [
     {
-      "design": "split",
-      "id": "io.github.sirjul1337.lock-explorer"
+      "id": "io.github.sirjul1337.lock-explorer",
+      "design": "rain",
+      "avatar": "/home/muhammed-uzair/Downloads/Profile.png",
+      "openAs": "full"
     },
     {
       "id": "taxin.cursor-style"
     }
   ],
-  "version": 1
+  "version": 1,
+  "disabledPlugins": [
+    "omarchy.lock"
+  ]
 }
