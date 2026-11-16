@@ -2,13 +2,15 @@
 
 sleep 1
 
-local choice=$(print -l "Yes" "No" | fuzzel --dmenu -p "Start dev workflow? ")
+local choice=$(print -l "Start dev workflow" "Update Omarchy" "Do nothing" | fuzzel --dmenu -p "Action? ")
 
-if [[ "$choice" != "Yes" ]]; then
+if [[ "$choice" == "Update Omarchy" ]]; then
+    hyprctl dispatch 'hl.dsp.exec_cmd("ghostty -e omarchy update")'
+    exit 0
+elif [[ "$choice" != "Start dev workflow" ]]; then
     exit 0
 fi
 
-# Wait for a window matching a specific class (ignoring background boot popups)
 wait_for_class() {
     local class_regex="$1"
     local initial_matches="$2"
@@ -34,4 +36,4 @@ wait_for_class "zen" "$zen_count"
 
 local pink_noise="$HOME/Downloads/Pink Noise Black Screen Sleep, Focus, Study 10 Hours_1080p.mp4"
 hyprctl dispatch 'hl.dsp.focus({ workspace = "3" })'
-hyprctl dispatch "hl.dsp.exec_cmd(\"mpv --loop-file=inf '$pink_noise'\")"
+hyprctl dispatch "hl.dsp.exec_cmd(\"mpv --loop-file=inf '$pink_noise'\")"l.dsp.exec_cmd(\"mpv --loop-file=inf '$pink_noise'\")"
