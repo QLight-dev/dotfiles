@@ -11,7 +11,7 @@ if [[ -n $(git status -s) ]]; then
 fi
 
 
-omz update
+$ZSH/tools/upgrade.sh
 flatpak update -y
 
 sudo paccache -rk1
