@@ -24,7 +24,7 @@
       "center": [
         {
           "id": "omarchy.clock",
-          "format": "dddd HH:mm",
+          "format": "dddd HH:mm:ss",
           "formatAlt": "d MMMM 'W'ww yyyy",
           "verticalFormat": "HH\n—\nmm"
         }
@@ -69,6 +69,9 @@
       "right": [
         {
           "id": "omarchy.tray"
+        },
+        {
+          "id": "io.github.ncr.omaphones"
         },
         {
           "id": "omarchy.keyboard-layout"
