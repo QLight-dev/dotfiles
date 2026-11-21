@@ -1,32 +1,32 @@
 # zen
-logins.json
-key*.db
-cert9.db
-pkcs11.txt
+zen/**/logins.json
+zen/**/key*.db
+zen/**/cert9.db
+zen/**/pkcs11.txt
 
-cookies.sqlite
-sessionstore.*
-sessionCheckpoints.json
+zen/**/cookies.sqlite
+zen/**/sessionstore.*
+zen/**/sessionCheckpoints.json
 
-places.sqlite
-places.sqlite-wal
-places.sqlite-shm
-formhistory.sqlite
-favicons.sqlite
-favicons.sqlite-wal
+zen/**/places.sqlite
+zen/**/places.sqlite-wal
+zen/**/places.sqlite-shm
+zen/**/formhistory.sqlite
+zen/**/favicons.sqlite
+zen/**/favicons.sqlite-wal
 
-storage/
-extension-data/
-webappsstore.sqlite
-webappsstore.sqlite-wal
+zen/**/storage/
+zen/**/extension-data/
+zen/**/webappsstore.sqlite
+zen/**/webappsstore.sqlite-wal
 
-extensions.json
-addonStartup.json.lz4
+zen/**/extensions.json
+zen/**/addonStartup.json.lz4
 
-cache2/
-startupCache/
-minidumps/
-crashes/
-*.log
-compatibility.ini
-parent.lock
+zen/**/cache2/
+zen/**/startupCache/
+zen/**/minidumps/
+zen/**/crashes/
+zen/**/*.log
+zen/**/compatibility.ini
+zen/**/parent.lock
