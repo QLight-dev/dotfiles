@@ -33,6 +33,3 @@ vim.opt.clipboard:append("unnamedplus")
 vim.opt.hlsearch = true
 
 vim.opt.mouse = "a"
-
--- still deciding if i like it:
--- vim.opt.guicursor = ""

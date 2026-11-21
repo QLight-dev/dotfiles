@@ -1,22 +1,13 @@
 {
-  "version": 1,
-  "idle": {
-    "screensaver": 150,
-    "lock": 300
-  },
   "bar": {
-    "position": "top",
     "background": "opaque",
     "layout": {
-      "left": [
+      "center": [
         {
-          "id": "omarchy.menu"
-        },
-        {
-          "id": "omarchy.monitor"
-        },
-        {
-          "id": "omarchy.workspaces"
+          "format": "dddd HH:mm:ss",
+          "formatAlt": "d MMMM 'W'ww yyyy",
+          "id": "omarchy.clock",
+          "verticalFormat": "HH\n—\nmm"
         }
       ],
       "centerBegin": [
@@ -24,25 +15,16 @@
           "id": "omarchy.indicators"
         }
       ],
-      "center": [
-        {
-          "id": "omarchy.clock",
-          "format": "dddd HH:mm:ss",
-          "formatAlt": "d MMMM 'W'ww yyyy",
-          "verticalFormat": "HH\n—\nmm"
-        }
-      ],
       "centerEnd": [
         {
+          "azanSound": "~/.local/share/sounds/azan/azan.mp3",
           "id": "io.github.ahmadrun.prayer-times",
-          "method": "Gulf",
-          "azanSound": "~/.local/share/sounds/azan/azan.mp3"
+          "method": "Gulf"
         },
         {
           "id": "omarchy.weather"
         },
         {
-          "id": "omarchy.elsewhen",
           "cities": [
             {
               "name": "Dubai",
@@ -57,16 +39,28 @@
               "zone": "Europe/London"
             },
             {
-              "name": "Dallas",
-              "zone": "America/Chicago",
               "lat": 32.78306,
               "lon": -96.80667,
-              "region": "Texas, US"
+              "name": "Dallas",
+              "region": "Texas, US",
+              "zone": "America/Chicago"
             }
-          ]
+          ],
+          "id": "omarchy.elsewhen"
         },
         {
           "id": "omarchy.system-update"
+        }
+      ],
+      "left": [
+        {
+          "id": "omarchy.menu"
+        },
+        {
+          "id": "omarchy.monitor"
+        },
+        {
+          "id": "omarchy.workspaces"
         }
       ],
       "right": [
@@ -93,10 +87,17 @@
         }
       ],
       "tray": []
-    }
+    },
+    "position": "top"
   },
+  "cloneSourceRestores": [
+    "io.github.sirjul1337.lock-explorer"
+  ],
+  "disabledPlugins": [
+    "omarchy.lock"
+  ],
   "dock": {
-    "position": "bottom",
+    "autohide": true,
     "pinned": [
       "org.gnome.Nautilus",
       "chromium",
@@ -105,20 +106,20 @@
       "omawrite",
       "X",
       "YouTube"
-    ]
+    ],
+    "position": "bottom"
+  },
+  "idle": {
+    "lock": 300,
+    "screensaver": 150
   },
   "plugins": [
     {
-      "id": "io.github.sirjul1337.lock-explorer",
-      "design": "rain",
       "avatar": "/home/muhammed-uzair/Downloads/Profile.png",
+      "design": "rain",
+      "id": "io.github.sirjul1337.lock-explorer",
       "openAs": "full"
     }
   ],
-  "disabledPlugins": [
-    "omarchy.lock"
-  ],
-  "cloneSourceRestores": [
-    "io.github.sirjul1337.lock-explorer"
-  ]
+  "version": 1
 }

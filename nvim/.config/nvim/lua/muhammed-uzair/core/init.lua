@@ -1,29 +1,21 @@
 require("muhammed-uzair.core.options")
 require("muhammed-uzair.core.keymaps")
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "codecompanion",
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*.rs",
 	callback = function()
-		-- Set filetype to markdown
-		vim.bo.filetype = "markdown"
-
-		local buf = 0
-		local name = vim.api.nvim_buf_get_name(buf)
-
-		-- Only rename if it doesn't already end with .md
-		if not name:match("%.md$") then
-			-- Check if a buffer with "codecompanion.md" already exists
-			local exists = false
-			for _, b in ipairs(vim.api.nvim_list_bufs()) do
-				if vim.api.nvim_buf_get_name(b):match("codecompanion%.md$") then
-					exists = true
-					break
+		local params = vim.lsp.util.make_range_params()
+		params.context = { only = { "source.organizeImports" } }
+		local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 1000)
+		for _, res in pairs(result or {}) do
+			for _, r in pairs(res.result or {}) do
+				if r.edit then
+					vim.lsp.util.apply_workspace_edit(r.edit, "utf-8")
+				else
+					vim.lsp.buf.execute_command(r.command)
 				end
 			end
-
-			if not exists then
-				vim.api.nvim_buf_set_name(buf, "codecompanion.md")
-			end
 		end
+		vim.lsp.buf.format({ async = false })
 	end,
 })

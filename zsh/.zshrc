@@ -1,11 +1,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME=""
-
-# OMZ reminder
-# zstyle ':omz:update' mode reminder
-# zstyle ':omz:update' frequency 7
-
 DISABLE_MAGIC_FUNCTIONS="false"
 DISABLE_LS_COLORS="false"
 DISABLE_AUTO_TITLE="false"
@@ -14,51 +9,36 @@ ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="false"
 
-# see 'man strftime' for details.
 HIST_STAMPS="mm/dd/yyyy"
 
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-interactive-cd)
 
 source $ZSH/oh-my-zsh.sh
 
-# vi mode
 bindkey -v
 
-# exports
 export EDITOR="nvim"
 export LANG=en_US.UTF-8
 export ARCHFLAGS="-arch $(uname -m)"
 
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
-# evals
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
-# some helpful aliases
 alias nv="nvim"
 alias v="vim"
 alias ..="z .."
-# git aliases are already provided with git plugin
-# suffix aliases
 alias -s md=glow
-alias -s go=bat
+alias -s rust=bat
 
-# load secrets
 if [ -f "$HOME/.secrets" ]; then
   source "$HOME/.secrets"
 fi
 
-# PATH Variables.
-export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export LD_PRELOAD=/usr/lib/libsodium.so # for enteauth where the build is corrupted or something like that (i have no idea why)
-export PATH="$PATH:$HOME/.dotnet/tools"
 export PATH="$PATH:$HOME/.cargo/bin"
 
-# Custom Functions
 mkcd() {
   mkdir -p "$1" && cd "$1"
 }

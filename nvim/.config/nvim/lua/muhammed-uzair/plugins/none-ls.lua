@@ -7,12 +7,9 @@ return {
 				-- lua
 				null_ls.builtins.formatting.stylua,
 
-				-- golang
-				null_ls.builtins.formatting.goimports,
-				null_ls.builtins.diagnostics.golangci_lint,
+				-- rust
+				null_ls.builtins.formatting.ast_grep,
 
-				-- SQL
-				null_ls.builtins.formatting.sql_formatter,
 			},
 		})
 

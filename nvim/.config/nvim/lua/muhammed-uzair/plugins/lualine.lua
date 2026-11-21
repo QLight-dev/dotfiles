@@ -3,9 +3,8 @@ return {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-        -- Define a simple clock function
         local function clock()
-            return os.date("%H:%M:%S")  -- Hours:Minutes:Seconds
+            return os.date("%H:%M:%S")  
         end
 
         -- Setup lualine with the clock
@@ -20,7 +19,7 @@ return {
                 lualine_b = {'branch'},
                 lualine_c = {'filename'},
                 lualine_x = {'encoding', 'fileformat', 'filetype'},
-                lualine_y = {clock},  -- <-- your clock here
+                lualine_y = {clock}, 
                 lualine_z = {'location'}
             },
         })

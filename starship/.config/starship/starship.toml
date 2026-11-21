@@ -1,17 +1,17 @@
 format = """
-[](red)\
+[](pink)\
 $os\
 $username\
-[](bg:peach fg:red)\
+[](bg:mauve fg:pink)\
 $directory\
-[](bg:yellow fg:peach)\
+[](bg:lavender fg:mauve)\
 $git_branch\
 $git_status\
-[](bg:green fg:yellow)\
+[](bg:blue fg:lavender)\
 $rust\
-[](bg:mauve fg:green)\
+[](bg:sapphire fg:blue)\
 $cmd_duration\
-[](fg:mauve)\
+[](fg:sapphire)\
 $line_break\
 $character"""
 
@@ -47,7 +47,7 @@ crust = "#11111b"
 
 [os]
 disabled = false
-style = "bg:red fg:base"
+style = "bg:pink fg:base"
 
 [os.symbols]
 Arch = "󰣇 "
@@ -55,12 +55,12 @@ Linux = "󰌽 "
 
 [username]
 show_always = true
-style_user = "bg:red fg:base"
-style_root = "bg:red fg:base"
+style_user = "bg:pink fg:base"
+style_root = "bg:pink fg:base"
 format = '[$user ]($style)'
 
 [directory]
-style = "bg:peach fg:base"
+style = "bg:mauve fg:base"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -75,20 +75,20 @@ truncate_to_repo = true
 
 [git_branch]
 symbol = ""
-style = "bg:yellow"
-format = '[[ $symbol $branch ](fg:base bg:yellow)]($style)'
+style = "bg:lavender fg:base"
+format = '[[ $symbol $branch ](fg:base bg:lavender)]($style)'
 
 [git_status]
-style = "bg:yellow"
-format = '[[($all_status$ahead_behind )](fg:base bg:yellow)]($style)'
+style = "bg:lavender fg:base"
+format = '[[($all_status$ahead_behind )](fg:base bg:lavender)]($style)'
 
 [rust]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol($version) ](fg:base bg:green)]($style)'
+style = "bg:blue fg:base"
+format = '[[ $symbol($version) ](fg:base bg:blue)]($style)'
 
 [cmd_duration]
-style = "bg:mauve fg:base"
+style = "bg:sapphire fg:base"
 format = '[  $duration ]($style)'
 
 [line_break]
@@ -96,9 +96,9 @@ disabled = false
 
 [character]
 disabled = false
-success_symbol = '[](bold green)'
+success_symbol = '[](bold lavender)'
 error_symbol = '[](bold red)'
-vimcmd_symbol = '[](bold green)'
+vimcmd_symbol = '[](bold lavender)'
 vimcmd_replace_one_symbol = '[](bold mauve)'
 vimcmd_replace_symbol = '[](bold mauve)'
-vimcmd_visual_symbol = '[](bold yellow)'
+vimcmd_visual_symbol = '[](bold pink)'
