@@ -36,4 +36,5 @@ wait_for_class "zen" "$zen_count"
 
 local pink_noise="$HOME/Downloads/Pink Noise Black Screen Sleep, Focus, Study 10 Hours_1080p.mp4"
 hyprctl dispatch 'hl.dsp.focus({ workspace = "3" })'
-hyprctl dispatch "hl.dsp.exec_cmd(\"mpv --loop-file=inf '$pink_noise'\")"l.dsp.exec_cmd(\"mpv --loop-file=inf '$pink_noise'\")"
+hyprctl dispatch "hl.dsp.exec_cmd(\"mpv --loop-file=inf '$pink_noise'\")"
+hyprctl dispatch 'hl.dsp.exec_cmd("discord")'
