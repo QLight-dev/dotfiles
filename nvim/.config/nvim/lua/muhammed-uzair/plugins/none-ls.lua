@@ -7,9 +7,6 @@ return {
 				-- lua
 				null_ls.builtins.formatting.stylua,
 
-				-- rust
-				null_ls.builtins.formatting.ast_grep,
-
 			},
 		})
 
