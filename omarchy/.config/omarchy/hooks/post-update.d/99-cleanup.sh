@@ -5,12 +5,10 @@ nohup zen-browser "https://github.com/basecamp/omarchy/releases/latest" &>/dev/n
 
 cd /home/muhammed-uzair/dotfiles
 nvim --headless "+Lazy! sync" +qa
-git push
 
-if [[ -n $(git status -s) ]]; then
-    git add nvim/.config/nvim/lazy-lock.json
-    git commit -m "Auto-update dotfiles: $(date +'%Y-%m-%d %H:%M:%S')"
-fi
+git restore .
+git add nvim/.config/nvim/lazy-lock.json
+git commit -m "Auto-update dotfiles: $(date +'%Y-%m-%d %H:%M:%S')"
 
 
 $ZSH/tools/upgrade.sh

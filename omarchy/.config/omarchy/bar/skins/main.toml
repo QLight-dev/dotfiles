@@ -1,0 +1,6 @@
+[bar-skin]
+name        = "catppuccin"
+description = "Compact statusline with a Hyprland border"
+preset      = "statusline"
+border      = "accent"
+border-alpha = 0.55
